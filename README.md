@@ -28,8 +28,8 @@ Project ini belum selesai! mungkin akan di update kedepanya:)
 
 ## 👥 Anggota Tim
 * **Ketua:** M Ma'sum Hadi 25.11.6451
-* **Artist:** Wistara Panggih Arifin 25.11.6454
-* **Sound:** Dzaki Hafidz A 25.11.6465  dan Rifky Aditya R 25.11.6481 
+* **Artist:** Wistara Panggih Arifin 25.11.6454 dan Dzaki Hafidz A 25.11.6465
+* **Sound:** Rifky Aditya R 25.11.6481 
 * **Enginer:** Rafa Adib Prabowo 25.11.6484
 
 ## 🚀 Cara Menjalankan Project
