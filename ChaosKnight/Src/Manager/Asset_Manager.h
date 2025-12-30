@@ -25,5 +25,4 @@ private:
 	//karena texture adalah data terurut:)
 	std::map<std::string, Texture2D> textureMap;
 
-
 };

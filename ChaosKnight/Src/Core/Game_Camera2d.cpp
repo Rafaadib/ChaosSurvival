@@ -14,6 +14,7 @@ Game_Camera2d::Game_Camera2d(int width, int height)
 	PlayerCamera.zoom = 1.0f;
 }
 
+//target ke player cik
 void Game_Camera2d::CameraUpdate(Vector2 PositionTarget) {
 	PlayerCamera.target = PositionTarget;
 }

@@ -54,7 +54,7 @@ private:
 	//musik kang
 	Music Backsound;
 	Sound Buttonclick;
-	bool DrawButton(const char* text, Rectangle recbutton, Vector2 mousebutton);
+	bool DrawButton(const char* text, Texture2D buttontexture, Rectangle recbutton, Vector2 mousebutton);
 
 
 	//smart pointer (pointer cerdas)
@@ -80,6 +80,8 @@ private:
 	int Explevel;
 	float AutoShootTimer;
 	float SpawnTimer;
+
+	int buffcount = 0;
 
 	int Score = 0;
 

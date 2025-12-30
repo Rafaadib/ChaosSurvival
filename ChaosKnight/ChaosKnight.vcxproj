@@ -169,10 +169,12 @@
   <ItemGroup>
     <Image Include="GameAsset\atkspd.png" />
     <Image Include="GameAsset\Atl.png" />
+    <Image Include="GameAsset\atlas3.png" />
     <Image Include="GameAsset\barhp.png" />
     <Image Include="GameAsset\bounce.png" />
     <Image Include="GameAsset\buffmultishot.png" />
     <Image Include="GameAsset\bullet.png" />
+    <Image Include="GameAsset\button.png" />
     <Image Include="GameAsset\bxp.png" />
     <Image Include="GameAsset\crit.png" />
     <Image Include="GameAsset\damageup.png" />
@@ -186,6 +188,7 @@
     <Image Include="GameAsset\fxp.png" />
     <Image Include="GameAsset\gem.png" />
     <Image Include="GameAsset\heal.png" />
+    <Image Include="GameAsset\pause2.png" />
     <Image Include="GameAsset\speedup.png" />
     <Image Include="GameAsset\undedknight.png" />
   </ItemGroup>

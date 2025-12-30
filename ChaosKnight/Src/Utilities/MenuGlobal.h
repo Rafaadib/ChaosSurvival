@@ -7,7 +7,8 @@ typedef enum GameScreen {
 	GAMEPLAY,
 	LEVEL_UP,
 	GAME_OVER,
-	CREDITS
+	CREDITS,
+	PAUSE
 
 }GameScreen;
 

@@ -169,6 +169,15 @@
     <Image Include="GameAsset\speedup.png">
       <Filter>GameAsset</Filter>
     </Image>
+    <Image Include="GameAsset\atlas3.png">
+      <Filter>GameAsset</Filter>
+    </Image>
+    <Image Include="GameAsset\pause2.png">
+      <Filter>GameAsset</Filter>
+    </Image>
+    <Image Include="GameAsset\button.png">
+      <Filter>GameAsset</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Sound\backsound.wav">

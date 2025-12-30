@@ -60,6 +60,7 @@ Game::~Game(){
 	UnloadRenderTexture(ScreenTarget);
 
 	//unlload musik dulu
+	//yang seound belum ada hehe
 	UnloadMusicStream(Backsound);
 	UnloadSound(Buttonclick);
 
@@ -104,13 +105,17 @@ void Game::LoadAsset() {
 	GameAsset->AddTexture("Card_Multishot", "GameAsset/buffmultishot.png");
 
 	//asset mini
-	GameAsset->AddTexture("PropA", "GameAsset/Atl.png");
+	GameAsset->AddTexture("PropA", "GameAsset/atlas3.png");
 
 	//ui
 	GameAsset->AddTexture("BarHp", "GameAsset/barhp.png");
 	GameAsset->AddTexture("FillHp", "GameAsset/fhp.png");
 	GameAsset->AddTexture("BarXp", "GameAsset/bxp.png");
 	GameAsset->AddTexture("FillXp", "GameAsset/fxp.png");
+
+	//tobol
+	GameAsset->AddTexture("Button", "GameAsset/button.png");
+	GameAsset->AddTexture("Pause", "GameAsset/pause2.png");
 
 	//audio
 	Backsound = LoadMusicStream("Sound/backsound.wav");
@@ -267,12 +272,14 @@ void Game::Update() {
 
 			buffmanager->ApplyBuff(PlayerKnight.get(), Selected.bufftype, Selected.ValueBuff);
 			
-			CurrentScreen = GAMEPLAY;
+			buffcount++;
 
-
-			if (choice >= 3) {
+			if (buffcount >= 5) {
 				Wavelevel++;
+				buffcount = 0;
 			}
+
+			CurrentScreen = GAMEPLAY;
 			
 		}
 
@@ -282,12 +289,17 @@ void Game::Update() {
 			CurrentScreen = MAIN_MENU;
 		}
 	}
-
-	if (CurrentScreen == GAME_OVER) {
-		if (IsKeyPressed(KEY_R)) {
-			GameReset();
+	/*else if (CurrentScreen == PAUSE) {
+		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
+			cur
 		}
-	}
+	}*/
+
+	//if (CurrentScreen == GAME_OVER) {
+	//	if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
+	//		CurrentScreen = MAIN_MENU;
+	//	}
+	//}
 
 }
 
@@ -310,7 +322,7 @@ void Game::EnemySpawnLogic(float Delta_t) {
 	SpawnTimer += Delta_t;
 
 	//setting spawn musuh
-	float Spawrate = 0.3f / (Wavelevel * 0.5f);
+	float Spawrate = 0.8f / (Wavelevel * 0.5f);
 	//batasi spawn
 	if (Spawrate < 0.1f) {
 		Spawrate = 0.1f;
@@ -331,7 +343,7 @@ void Game::EnemySpawnLogic(float Delta_t) {
 		float angle = GetRandomValue(0, 360) * DEG2RAD;
 		float distance = GetRandomValue(400, 500);
 
-		//fungsi trigonometri le
+		//fungsi trigonometri le(sin untuk posisi y dan cos untuk posisi x)
 		Vector2 SpawnPos = {
 			PlayerKnight->Position.x + cos(angle) * distance,
 			PlayerKnight->Position.y + sin(angle) * distance
@@ -422,45 +434,47 @@ void Game::EnemySpawnLogic(float Delta_t) {
 }
 
 
-bool Game::DrawButton(const char* text, Rectangle recbutton, Vector2 mousebutton) { //add 2d texture
+bool Game::DrawButton(const char* text,Texture2D buttontexture , Rectangle recbutton, Vector2 mousebutton) { //add 2d texture
 	bool click = false;
 
 	//cek apakah diatas tommbol mosuenya
 	bool isUpbutton = CheckCollisionPointRec(mousebutton, recbutton);
 
-	//Color Btint = WHITE;
-	//if (isUpbutton) {
-	//	if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
-	//		Btint = GRAY; //seusuaiakan wak
-	//	}
-	//	else {
-	//		Btint = { 230, 230, 230, 255 };
-	//	}
+	Color Btint = WHITE;
+	if (isUpbutton) {
+		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
+			Btint = GRAY; //seusuaiakan wak
+		}
+		else {
+			Btint = { 33, 52, 72, 255 };
+		}
 
-	//	if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
-	//		PlaySound(Buttonclick);
-	//		click = true;
-	//	}
-	//}
-
-	//bearubah warnanya saat di tekan
-	Color colorbuton = isUpbutton ? ORANGE : LIGHTGRAY;
-	if (isUpbutton && IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
-		colorbuton = DARKGRAY;
+		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+			//belum ada sound clik nya hehe
+			/*PlaySound(Buttonclick);*/
+			click = true;
+		}
 	}
 
-	//kotak tombol
-	DrawRectangleRec(recbutton, colorbuton);
-	DrawRectangleLinesEx(recbutton, 2, BLACK);
+	Rectangle Sourecbutton = {
+		0,
+		0,
+		(float)buttontexture.width,
+		(float)buttontexture.height
+	};
+	Rectangle destecbutton = recbutton;
 
-	//text di tengah
-	int widthtext = MeasureText(text, 20);
-	DrawText(text, recbutton.x + (recbutton.width / 2 - widthtext / 2), recbutton.y + (recbutton.height - 30), 20, BLACK);
+	DrawTexturePro(buttontexture, Sourecbutton, destecbutton, { 0, 0 }, 0.0f, Btint);
 
-	if (isUpbutton && IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
-		PlaySound(Buttonclick);
-		click = true;
-	}
+	int fontsize = 20;
+	int widthtext = MeasureText(text, fontsize);
+
+	float textX = recbutton.x + (recbutton.width / 2) - (widthtext / 2);
+	float textY = recbutton.y + (recbutton.height / 2) - (fontsize / 2);
+
+	DrawText(text, textX + 2, textY + 2, fontsize, BLACK);
+	DrawText(text, textX, textY, fontsize, WHITE);
+
 
 	return click;
 }
@@ -524,20 +538,22 @@ void Game::Draw() {
 		ClearBackground(GROWN); //clear buffer
 
 		Vector2 mouseclik = GetVirtualMousePotition();
+		Texture2D btntexture = GameAsset->GetTexture("Button");
+		Texture2D btnpause = GameAsset->GetTexture("Pause");
 
 		if (CurrentScreen == MAIN_MENU) {
 			DrawText("Chaos", VirtualWidth / 2 - 150, 100, 50, RED);
 			DrawText("Survival", VirtualWidth / 2 - 60, 150, 50, DARKGRAY);
 
 			//tombol
-			if (DrawButton("Play", { (float)VirtualWidth / 2 - 100, 250, 200, 50 }, mouseclik)) {
+			if (DrawButton("Play",  btntexture,  { (float)VirtualWidth / 2 - 100, 250, 200, 50 }, mouseclik)) {
 				GameReset();
 				CurrentScreen = GAMEPLAY;
 			}
-			if (DrawButton("Credit", { (float)VirtualWidth / 2 - 100, 320, 200, 50 }, mouseclik)) {
+			if (DrawButton("Credit", btntexture,  { (float)VirtualWidth / 2 - 100, 320, 200, 50 }, mouseclik)) {
 				CurrentScreen = CREDITS;
 			}
-			if (DrawButton("Exit", { (float)VirtualWidth / 2 - 100, 390, 200, 50 }, mouseclik)) {
+			if (DrawButton("Exit", btntexture, { (float)VirtualWidth / 2 - 100, 390, 200, 50 }, mouseclik)) {
 				IsGameRunning = false;
 			}
 		}
@@ -552,7 +568,7 @@ void Game::Draw() {
 
 			DrawText("click untuk kembali", VirtualWidth / 2 - 225, 500, 50, RED);
 		}
-		else if (CurrentScreen == GAMEPLAY || CurrentScreen == LEVEL_UP) {
+		else if (CurrentScreen == GAMEPLAY || CurrentScreen == LEVEL_UP || CurrentScreen == PAUSE) {
 			CameraChar->CameraBeginMode();
 
 				GameSystem::RenderDecoration(*GameWorld);
@@ -569,6 +585,7 @@ void Game::Draw() {
 					ShadowColor
 					);
 
+				//draw palyer
 				PlayerKnight->AnimDraw(PlayerKnight->Position, PScale, WHITE);
 
 				//render semua entity wak
@@ -599,7 +616,7 @@ void Game::Draw() {
 			//kill count
 			const char* ScoreKill = TextFormat("Kill : %d", Score);
 			int Textwidth = MeasureText(ScoreKill, 30);
-			DrawText(ScoreKill, VirtualWidth - Textwidth - 30, 30, 25, BLACK);
+			DrawText(ScoreKill, VirtualWidth - Textwidth - 30, 30, 25, RED);
 
 
 			//ui exp
@@ -620,6 +637,42 @@ void Game::Draw() {
 
 			//waveinfo
 			DrawText(TextFormat("Wave %d", Wavelevel), VirtualWidth / 2 - 10, 40, 30, BLACK);
+			DrawText(TextFormat("Nextwave %d/5 buffs", buffcount), VirtualWidth / 2 - 40, 75, 15, BLACK);
+
+			float pausize = 40.0f;
+			Rectangle pauserect = {
+				VirtualWidth - pausize - 20,
+				600,
+				pausize,
+				pausize
+			};
+
+			if (CurrentScreen == GAMEPLAY) {
+				if (DrawButton("", btnpause, pauserect, mouseclik)) {
+					CurrentScreen = PAUSE;
+				}
+			}
+			else if (CurrentScreen == PAUSE) {
+				DrawTexturePro(btnpause, { (float)btnpause.width, (float)btnpause.height }, pauserect, { 0, 0 }, 0.0f, WHITE);
+			}
+
+			if (CurrentScreen == PAUSE) {
+				DrawRectangle(0, 0, VirtualWidth, VirtualHeight, Fade(BLACK, 0.6f));
+
+				DrawText("Game Pause", VirtualWidth / 2 - 130, 130, 50, RED);
+
+				float btnpausewidth = 200;
+				float btnpauseheight = 60;
+				float btnpauseX = VirtualWidth / 2 - btnpausewidth / 2;
+
+				if (DrawButton("Resume", btntexture, { btnpauseX, 200, btnpausewidth, btnpauseheight }, mouseclik)) {
+					CurrentScreen = GAMEPLAY;
+				}
+				if (DrawButton("Main Menu", btntexture, { btnpauseX, 360, btnpausewidth, btnpauseheight }, mouseclik)) {
+					GameReset();
+					CurrentScreen = MAIN_MENU;
+				}
+			}
 
 		}
 		else if (CurrentScreen == GAME_OVER) {
@@ -629,12 +682,12 @@ void Game::Draw() {
 			DrawText(TextFormat("Total Score : %d", Score), VirtualWidth / 2 - 80, 220, 30, WHITE);
 
 			//play again
-			if (DrawButton("Play Again", { (float)VirtualWidth / 2 - 100, 350, 200, 50 }, mouseclik)) {
+			if (DrawButton("Play Again", btntexture, { (float)VirtualWidth / 2 - 100, 350, 200, 50 }, mouseclik)) {
 				GameReset();
 				CurrentScreen = GAMEPLAY;
 			}
-			if (DrawButton("Back To Main Menu", { (float)VirtualWidth / 2 - 100, 420, 200, 50 }, mouseclik)) {
-				CurrentScreen == MAIN_MENU;
+			if (DrawButton("Main Menu", btntexture, { (float)VirtualWidth / 2 - 100, 420, 200, 50 }, mouseclik)) {
+				CurrentScreen = MAIN_MENU;
 			}
 			
 		}

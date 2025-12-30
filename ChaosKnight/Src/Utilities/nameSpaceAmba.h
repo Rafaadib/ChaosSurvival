@@ -29,7 +29,7 @@ namespace Atribut {
 	inline float movepeed = 200.0f;
 
 	//enemy atribut
-	inline float enemydamage = 1.0f;
+	inline float enemydamage = 2.0f;
 
 }
 

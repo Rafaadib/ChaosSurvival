@@ -84,7 +84,7 @@ void GameSystem::UpdateLifetime(WorldComp& World, float Delta_t) {
 	}
 }
 
-void GameSystem::UpdateCollison(WorldComp& World, Character_2d* Player, int& Score_ref, Texture2D gemTexture) {
+void GameSystem::UpdateCollison(WorldComp& World, Character_2d* Player, int& kill_ref, Texture2D gemTexture) {
 	//loping cari projectile / deteksi proectile
 	for (int i = 0; i < MAX_ENTITY; i++) {
 		if (!World.activeEntity[i]) {
@@ -156,7 +156,7 @@ void GameSystem::UpdateCollison(WorldComp& World, Character_2d* Player, int& Sco
 
 						World.DestroyEntity(j);
 
-						Score_ref += 1;
+						kill_ref += 1;
 						SpawnXp(World, deathPos, 3, gemTexture);
 					}
 					//break dulu wak capek
@@ -279,7 +279,7 @@ void GameSystem::UpdateMagnetXP(WorldComp& World, Vector2 PlayerPos, float Delta
 }
 
 void GameSystem::UpdateDecoration(WorldComp& World, Vector2 PlayerPos, Asset_Manager* AssetDecoration) {
-	const int max_decoration = 13; //max decoration
+	const int max_decoration = 15; //max decoration
 	const float spawn_radiusmin = 500.0f;
 	const float spawn_radiusmax = 800.0f;
 	const float despawn = 1000.0f;
@@ -325,17 +325,17 @@ void GameSystem::UpdateDecoration(WorldComp& World, Vector2 PlayerPos, Asset_Man
 		World.transforms[decoration].PositionComp = spawnpos;
 
 		//bair random
-		World.transforms[decoration].ScaleComp = (float)GetRandomValue(3, 4);
+		World.transforms[decoration].ScaleComp = (float)GetRandomValue(2, 3);
 		/*World.transforms[decoration].RotationComp = (float)GetRandomValue(0, 360);*/
 
 		//gacha lagi
 		Texture2D atlasT = AssetDecoration->GetTexture("PropA");
 
 		//tentukan sesuian jumalamh asset decorasinya
-		float atlwidth = atlasT.width / 5.0f;
+		float atlwidth = atlasT.width / 7.0f;
 		float atlheight = (float)atlasT.height;
 
-		int frameindext = GetRandomValue(0, 4);
+		int frameindext = GetRandomValue(0, 6);
 
 		//setup component
 		World.sprite[decoration].TextureComp = atlasT;

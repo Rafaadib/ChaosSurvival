@@ -28,7 +28,7 @@ public:
 	static void UpdateLifetime(WorldComp& World, float Delta_t);
 
 	//update tabarakan le
-	static void UpdateCollison(WorldComp& World, Character_2d* Player, int& Score_ref, Texture2D gemTexture);
+	static void UpdateCollison(WorldComp& World, Character_2d* Player, int& kill_ref, Texture2D gemTexture);
 
 	//system mencari musuh terdekat untuk di temnbk
 	static int GetNearestEnemy(WorldComp& World, Vector2 PlayerPos);
