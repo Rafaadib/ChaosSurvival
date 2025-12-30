@@ -17,7 +17,9 @@ Project ini belum selesai! mungkin akan di update kedepanya:)
 # Gamplay(unfinished)
 
 !Menu(Menu.png)
+
 !GamePlay(Gameplay.png)
+
 !Buff(buff.png)
 
 ## 👥 Anggota Tim
@@ -39,7 +41,7 @@ Project ini menggunakan **Visual Studio 2022** dan **NuGet** untuk Raylib. Tidak
 
 ## 🎮 Kontrol Game
 * **W / A / S / D dan Arrow key**: Bergerak
-* **ALT : FullScreen bisa tapi rada burik hehe
+* **ALT** : FullScreen bisa tapi rada burik hehe
 
 ## 📂 Struktur Folder
 * `Src/` : Source code utama.
