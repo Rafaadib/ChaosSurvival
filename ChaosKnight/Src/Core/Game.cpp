@@ -535,7 +535,7 @@ void Game::Draw() {
 	ScreenoOrigin = { 0.0f, 0.0f };
 
 	BeginTextureMode(ScreenTarget);
-		ClearBackground(GROWN); //clear buffer
+		ClearBackground(GROWN_COLOR); //clear buffer
 
 		Vector2 mouseclik = GetVirtualMousePotition();
 		Texture2D btntexture = GameAsset->GetTexture("Button");
@@ -699,7 +699,7 @@ void Game::Draw() {
 	EndTextureMode();
 		 
 	BeginDrawing();
-		ClearBackground(GROWN);
+		ClearBackground(GROWN_COLOR);
 	
 		DrawTexturePro(ScreenTarget.texture, ScreenSourceRec, ScreenDestRec, ScreenoOrigin, 0.0f, WHITE);
 

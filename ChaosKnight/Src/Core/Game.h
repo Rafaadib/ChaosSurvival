@@ -6,6 +6,9 @@
 #include "Manager/System_Ambalabu.h"
 #include "Manager/Asset_Manager.h"
 #include "Manager/Buff_Manager.h"
+
+#define GROWN_COLOR  CLITERAL(Color){ 201, 181, 156, 255 }
+
 //forward declaration
 typedef enum GameScreen;
 

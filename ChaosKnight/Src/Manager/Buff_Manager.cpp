@@ -59,8 +59,8 @@ void Buff_Manager::ApplyBuff(Character_2d* Player, TypeBuff type, float valuebuf
 			break;
 		case TypeBuff::ATTACK_SPEED :
 			Atribut::atkspd -= valuebuff;
-			if (Atribut::atkspd <= 0.3f) {
-				Atribut::atkspd = 0.3f;
+			if (Atribut::atkspd <= 0.2f) {
+				Atribut::atkspd = 0.2f;
 			}
 			break;
 		case TypeBuff::HEAL_POTION :
