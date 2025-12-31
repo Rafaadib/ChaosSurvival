@@ -16,15 +16,15 @@ Project ini belum selesai! mungkin akan di update kedepanya:)
 
 # Gamplay(unfinished)
 
-!Menu(main_menu.png)
+![Menu](main_menu.png)
 
-!GamePlay(Gameplay.png)
+![GamePlay](Gameplay.png)
 
-!Buff(buff.png)
+![Buff](buff.png)
 
-!pause menu(game_pause.png)
+![pause menu](game_pause.png)
 
-!Game over(game_over.png)
+![Game over](game_over.png)
 
 ## 👥 Anggota Tim
 * **Ketua:** M Ma'sum Hadi 25.11.6451
