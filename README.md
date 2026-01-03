@@ -62,16 +62,29 @@ Pastikan kamu sudah menginstall ini:
 
 ### 💻 Menggunakan VS Code (Mac / Windows / Linux)
 
-1.  Copy repository github : `https://github.com/Rafaadib/ChaosSurvival.git`
-2.  Install Ekstensi di VS Code:
+**Clone Repository (Jika belum punya file project)**
+1.  Buka VS Code.
+2.  Tekan tombol kombinasi untuk membuka Command Palette:
+    * **Windows:** `Ctrl + Shift + P`
+    * **Mac:** `Cmd + Shift + P`
+3.  Ketik **`Git: Clone`** lalu tekan Enter.
+4.  Masukkan URL Repository GitHub ini dan tekan Enter.
+5.   Copy repository github : `https://github.com/Rafaadib/ChaosSurvival.git`
+6.  Pilih folder di komputermu untuk menyimpan project.
+7.  Setelah selesai, klik tombol **Open** pada notifikasi yang muncul di pojok kanan bawah.
+
+**install ini jika belum**
+    Install Ekstensi di VS Code:
     * **C/C++** (by Microsoft)
     * **CMake Tools** (by Microsoft)
-3.  Buka VS Code, lalu pilih **File > Open Folder...**
-4.  Pilih folder project `ChaosKnight`.
-5.  Pilih "Select a Kit" (Pilih Compiler):
+
+
+8.  Buka VS Code, lalu pilih **File > Open Folder...**
+9.  Pilih folder project `ChaosKnight`.
+10.  Pilih "Select a Kit" (Pilih Compiler):
     * **Mac:** Pilih **Clang** atau **GCC**.
     * **Windows:** Pilih **Visual Studio Community Release**.
-6.  Lihat **Status Bar** (Baris paling bawah VS Code warna biru):
+11.  Lihat **Status Bar** (Baris paling bawah VS Code warna biru):
     * Klik ikon **Build** (Gerigi) untuk compile.
     * Klik ikon **Play** (Segitiga) untuk menjalankan game.
 
