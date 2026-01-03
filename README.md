@@ -50,7 +50,7 @@ Pastikan kamu sudah menginstall ini:
 
 ### 🚀 Menggunakan Visual Studio 
 
-1.  Copy repository github : https://github.com/Rafaadib/ChaosSurvival.git
+1.  Copy repository github : `https://github.com/Rafaadib/ChaosSurvival.git`
 2.  Buka **Visual Studio 2022**.
 3.  Pilih menu **"Open a Local Folder"**.
 4.  Pilih folder `ChaosKnight` (folder terluar yang ada file `CMakeLists.txt`).
@@ -62,7 +62,7 @@ Pastikan kamu sudah menginstall ini:
 
 ### 💻 Menggunakan VS Code (Mac / Windows / Linux)
 
-1.  Copy repository github : https://github.com/Rafaadib/ChaosSurvival.git
+1.  Copy repository github : `https://github.com/Rafaadib/ChaosSurvival.git`
 2.  Install Ekstensi di VS Code:
     * **C/C++** (by Microsoft)
     * **CMake Tools** (by Microsoft)
