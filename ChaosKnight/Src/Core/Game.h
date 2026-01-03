@@ -54,9 +54,9 @@ private:
 	const int VirtualWidth = 1126;
 	const int VirtualHeight = 650;
 
-	//musik kang
-	Music Backsound;
-	Sound Buttonclick;
+	////musik kang
+	Music Backsound = { 0 };
+	/*Sound Buttonclick = { 0 };*/
 	bool DrawButton(const char* text, Texture2D buttontexture, Rectangle recbutton, Vector2 mousebutton);
 
 

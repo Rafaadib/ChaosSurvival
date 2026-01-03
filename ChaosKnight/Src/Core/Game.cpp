@@ -18,11 +18,11 @@
 Game::Game(int screenWidth, int screenHeight, const char* title)
 	: screenWidth(screenWidth), screenHeight(screenHeight) {
 
-	SetTargetFPS(60);
-	InitWindow(screenWidth, screenHeight, title);
-
 	//init musik
 	InitAudioDevice();
+
+	SetTargetFPS(60);
+	InitWindow(screenWidth, screenHeight, title);
 
 	//rezize window le
 	SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
@@ -57,14 +57,17 @@ Game::Game(int screenWidth, int screenHeight, const char* title)
 
 //destructor (ini untuk hancurkan object yang sudah tidak digunakan wak)
 Game::~Game(){
-	UnloadRenderTexture(ScreenTarget);
-
 	//unlload musik dulu
 	//yang seound belum ada hehe
-	UnloadMusicStream(Backsound);
-	UnloadSound(Buttonclick);
-
-	UnloadAsset();
+	if (IsMusicValid(Backsound)) {
+		StopMusicStream(Backsound);
+		UnloadMusicStream(Backsound);
+	}
+	/*if (IsSoundValid(Buttonclick)) {
+		UnloadSound(Buttonclick);
+	}*/
+	
+	UnloadRenderTexture(ScreenTarget);
 
 	CloseAudioDevice();
 	CloseWindow();
@@ -88,6 +91,7 @@ void Game::LoadAsset() {
 	GameAsset->AddTexture("Enemy", "GameAsset/evofirespirit.png");
 	GameAsset->AddTexture("Enemy2", "GameAsset/evobats.png");
 	GameAsset->AddTexture("Enemy3", "GameAsset/evolarry.png");
+	GameAsset->AddTexture("Enemy4", "GameAsset/slime.png");
 
 	//projectile
 	GameAsset->AddTexture("Bullet", "GameAsset/bullet.png");
@@ -350,7 +354,7 @@ void Game::EnemySpawnLogic(float Delta_t) {
 		};
 
 		//1 persen hingga 100persen
-		int GachaEnemy = GetRandomValue(1, 50);
+		int GachaEnemy = GetRandomValue(1, 60);
 
 		//normal enemy 
 		std::string tkey = "Enemy";
@@ -379,6 +383,12 @@ void Game::EnemySpawnLogic(float Delta_t) {
 			Escale = 1.0f;
 			Espeed = 60.0f;
 			Ehp = 14.0f;
+		}
+		else if (GachaEnemy <= 55) {
+			tkey = "Enemy4";
+			Escale = 3.0f;
+			Espeed = 60.0f;
+			Ehp = 15.0f;
 		}
 		else {
 			tkey = "Enemy3";
@@ -412,6 +422,10 @@ void Game::EnemySpawnLogic(float Delta_t) {
 		GameWorld->sprite[enemy].MaxFrameComp = framecount;
 		GameWorld->sprite[enemy].FrameWidthComp = framewidth;
 		GameWorld->sprite[enemy].FrameSpeedComp = 0.15f;
+
+		GameWorld->sprite[enemy].CurrentFrameComp = 0;
+		GameWorld->sprite[enemy].FrameTimerComp = 0.0f;
+
 		GameWorld->sprite[enemy].SourceRecComp = { 0, 0, framewidth, (float)texEnemy.height };
 		GameWorld->sprite[enemy].OriginCommp = { framewidth / 2, (float)texEnemy.height / 2.0f };
 
