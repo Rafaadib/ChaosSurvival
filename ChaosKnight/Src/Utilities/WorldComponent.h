@@ -9,7 +9,7 @@
 
 //ini set max ennity wak
 //bisa namabah tergantung mood ku:)
-const int MAX_ENTITY = 3000;
+const EntityID MAX_ENTITY = 3000;
 
 class WorldComp {
 public:

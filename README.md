@@ -69,7 +69,7 @@ Pastikan kamu sudah menginstall ini:
     * **Mac:** `Cmd + Shift + P`
 3.  Ketik **`Git: Clone`** lalu tekan Enter.
 4.  Masukkan URL Repository GitHub ini dan tekan Enter.
-5.   Copy repository github : `https://github.com/Rafaadib/ChaosSurvival.git`
+5.  Copy repository github : `https://github.com/Rafaadib/ChaosSurvival.git`
 6.  Pilih folder di komputermu untuk menyimpan project.
 7.  Setelah selesai, klik tombol **Open** pada notifikasi yang muncul di pojok kanan bawah.
 
